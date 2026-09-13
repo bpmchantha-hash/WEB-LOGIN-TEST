@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 18</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 32px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .title {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .title span {
+            display: inline-block;
+            animation: LOGIN 1.2s infinite alternate ease-in-out;
+        }
+
+        .title span:nth-child(1) { animation-delay: 0.0s; }
+        .title span:nth-child(2) { animation-delay: 0.2s; }
+        .title span:nth-child(3) { animation-delay: 0.4s; }
+        .title span:nth-child(4) { animation-delay: 0.6s; }
+        .title span:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes LOGIN {
+            0% {
+                color: #ef4444;
+                transform: translateY(0);
+            }
+            100% {
+                color: #3b82f6;
+                transform: translateY(-6px);
+            }
+        }
+        .welcome-letter {
+            display: inline-block;
+            animation: WELCOME 1s infinite alternate ease-in-out;
+        }
+
+        @keyframes WELCOME {
+            0% {
+                color: #10b981;
+                transform: scale(1);
+            }
+            100% {
+                color: #6366f1;
+                transform: scale(1.15) translateY(-4px);
+            }
+        }
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #2563eb;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box" id="Card">
+        <h1 id="Title" class="title">
+            <span>L</span><span>O</span><span>G</span><span>I</span><span>N</span>
+        </h1>
+
+        <div class="form-group" id="UserGroup">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
+        </div>
+
+        <div class="form-group" id="PassGroup">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="••••••••">
+        </div>
+        
+        <button class="button" id="SubmitBtn" onclick="handleLogin()">Sign In</button>
+    </div>
+    
+    <script>
+        function handleLogin() {
+            window.alert('Ur Privatcy Saved');
+            document.getElementById('UserGroup').style.display = "none";
+            document.getElementById('PassGroup').style.display = "none";
+            document.getElementById('SubmitBtn').style.display = "none";
+            const titleElement = document.getElementById('Title');
+            const welcomeText = "Welcome To My Web!!";
+            
+            titleElement.style.fontSize = "1.5rem";
+            titleElement.innerHTML = "";
+            welcomeText.split("").forEach((char, index) => {
+                const span = document.createElement('span');
+                
+                if (char === " ") {
+                    span.innerHTML = "&nbsp;";
+                } else {
+                    span.textContent = char;
+                    span.classList.add('welcome-letter');
+                    span.style.animationDelay = `${(index * 0.05).toFixed(2)}s`;
+                }
+                
+                titleElement.appendChild(span);
+            });
+        }
+    </script>
+
+</body>
+</html>
